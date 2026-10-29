@@ -7,7 +7,7 @@
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <title>Calma — Meditación & Respiración</title>
+  <title>Calma — Meditación & Voz Guiada</title>
   <link rel="manifest" href="manifest.json" />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='120' fill='%23090d16'/%3E%3Ccircle cx='256' cy='256' r='160' fill='%232dd4bf' opacity='0.2'/%3E%3Ccircle cx='256' cy='256' r='105' fill='none' stroke='%232dd4bf' stroke-width='16'/%3E%3Ccircle cx='256' cy='256' r='32' fill='%23f8fafc'/%3E%3C/svg%3E" />
   <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='120' fill='%23090d16'/%3E%3Ccircle cx='256' cy='256' r='160' fill='%232dd4bf' opacity='0.2'/%3E%3Ccircle cx='256' cy='256' r='105' fill='none' stroke='%232dd4bf' stroke-width='16'/%3E%3Ccircle cx='256' cy='256' r='32' fill='%23f8fafc'/%3E%3C/svg%3E" />
@@ -39,7 +39,7 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: 18px;
+      padding: 16px;
       overflow-x: hidden;
     }
 
@@ -53,7 +53,7 @@
     }
 
     .brand {
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       font-weight: 600;
       letter-spacing: 0.5px;
       display: flex;
@@ -81,7 +81,7 @@
       color: var(--text-main);
       padding: 7px 12px;
       border-radius: 999px;
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       font-weight: 500;
       cursor: pointer;
       backdrop-filter: blur(10px);
@@ -99,11 +99,6 @@
       display: none;
     }
 
-    .pill-btn:active {
-      transform: scale(0.96);
-    }
-
-    /* Esfera central de respiración */
     .stage {
       flex: 1;
       display: flex;
@@ -111,14 +106,14 @@
       justify-content: center;
       align-items: center;
       position: relative;
-      my: 16px;
-      min-height: 290px;
+      margin: 10px 0;
+      min-height: 240px;
     }
 
     .orb-wrapper {
       position: relative;
-      width: 230px;
-      height: 230px;
+      width: 210px;
+      height: 210px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -137,8 +132,8 @@
 
     .orb-core {
       position: relative;
-      width: 150px;
-      height: 150px;
+      width: 140px;
+      height: 140px;
       border-radius: 50%;
       background: radial-gradient(circle at 35% 30%, rgba(45, 212, 191, 0.35), rgba(15, 23, 42, 0.9));
       border: 1.5px solid rgba(45, 212, 191, 0.5);
@@ -148,61 +143,67 @@
       justify-content: center;
       align-items: center;
       transform: scale(0.8);
-      transition: transform 0.3s ease-out, border-color 0.6s ease;
+      transition: transform 0.3s ease-out;
       cursor: pointer;
     }
 
     .phase-label {
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       font-weight: 500;
-      letter-spacing: 0.6px;
+      letter-spacing: 0.5px;
       color: var(--text-main);
-      margin-bottom: 4px;
+      margin-bottom: 3px;
       text-align: center;
     }
 
     .timer-display {
-      font-size: 1.65rem;
+      font-size: 1.55rem;
       font-weight: 300;
       font-variant-numeric: tabular-nums;
       color: var(--accent-teal);
     }
 
-    .sub-status {
-      margin-top: 22px;
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      letter-spacing: 0.3px;
-      min-height: 1.2em;
+    .guide-subtitle {
+      margin-top: 18px;
+      font-size: 0.88rem;
+      color: #e2e8f0;
+      text-align: center;
+      max-width: 360px;
+      min-height: 2.6em;
+      line-height: 1.35;
+      padding: 0 10px;
+      font-style: italic;
+      opacity: 0.9;
+      transition: opacity 0.4s ease;
     }
 
-    /* Panel de controles */
     .controls-card {
       max-width: 500px;
       width: 100%;
       margin: 0 auto;
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
-      border-radius: 24px;
-      padding: 18px;
+      border-radius: 22px;
+      padding: 15px;
       backdrop-filter: blur(16px);
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 11px;
     }
 
     .row-group {
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 5px;
     }
 
     .row-header {
       display: flex;
       justify-content: space-between;
-      font-size: 0.75rem;
+      align-items: center;
+      font-size: 0.72rem;
       text-transform: uppercase;
-      letter-spacing: 0.8px;
+      letter-spacing: 0.7px;
       color: var(--text-muted);
     }
 
@@ -216,12 +217,15 @@
       background: rgba(255, 255, 255, 0.04);
       border: 1px solid var(--border-subtle);
       color: var(--text-muted);
-      padding: 8px 6px;
-      border-radius: 12px;
-      font-size: 0.78rem;
+      padding: 7px 4px;
+      border-radius: 10px;
+      font-size: 0.75rem;
       text-align: center;
       cursor: pointer;
       transition: all 0.18s ease;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .chip.active {
@@ -231,11 +235,40 @@
       font-weight: 500;
     }
 
+    .voice-bar {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      margin-top: 2px;
+    }
+
+    .voice-select {
+      flex: 1;
+      background: rgba(15, 23, 42, 0.8);
+      color: var(--text-main);
+      border: 1px solid var(--border-subtle);
+      border-radius: 9px;
+      padding: 6px 8px;
+      font-size: 0.75rem;
+      outline: none;
+    }
+
+    .file-label {
+      background: rgba(129, 140, 248, 0.15);
+      border: 1px solid rgba(129, 140, 248, 0.4);
+      color: var(--accent-indigo);
+      padding: 6px 10px;
+      border-radius: 9px;
+      font-size: 0.74rem;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
     .sound-Controls {
       display: flex;
       align-items: center;
-      gap: 12px;
-      margin-top: 4px;
+      gap: 10px;
+      margin-top: 2px;
     }
 
     input[type="range"] {
@@ -250,20 +283,19 @@
     .action-row {
       display: grid;
       grid-template-columns: 1fr auto auto;
-      gap: 8px;
-      margin-top: 4px;
+      gap: 7px;
+      margin-top: 2px;
     }
 
     .main-btn {
       background: var(--accent-teal);
       color: #06211e;
       border: none;
-      border-radius: 14px;
-      padding: 13px 18px;
-      font-size: 0.95rem;
+      border-radius: 13px;
+      padding: 12px 16px;
+      font-size: 0.92rem;
       font-weight: 600;
       cursor: pointer;
-      transition: transform 0.15s ease, opacity 0.2s;
     }
 
     .main-btn.running {
@@ -276,27 +308,27 @@
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid var(--border-subtle);
       color: var(--text-main);
-      border-radius: 14px;
-      padding: 0 14px;
-      font-size: 0.82rem;
+      border-radius: 13px;
+      padding: 0 12px;
+      font-size: 0.78rem;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 4px;
     }
 
     .icon-btn.active {
       border-color: var(--accent-indigo);
       color: var(--accent-indigo);
-      background: rgba(129, 140, 248, 0.14);
+      background: rgba(129, 140, 248, 0.16);
     }
 
     .stats-bar {
       display: flex;
       justify-content: space-between;
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       color: var(--text-muted);
-      padding-top: 6px;
+      padding-top: 5px;
       border-top: 1px solid var(--border-subtle);
     }
   </style>
@@ -317,20 +349,20 @@
   <main class="stage">
     <div class="orb-wrapper">
       <div id="orbRing" class="orb-ring"></div>
-      <div id="orbCore" class="orb-core" title="Toca para iniciar o pausar">
+      <div id="orbCore" class="orb-core">
         <div id="phaseLabel" class="phase-label">Listo</div>
         <div id="timerDisplay" class="timer-display">10:00</div>
       </div>
     </div>
-    <div id="subStatus" class="sub-status">Toca el círculo para comenzar</div>
+    <div id="guideSubtitle" class="guide-subtitle">Toca el círculo para iniciar tu sesión</div>
   </main>
 
   <section class="controls-card">
     <!-- Duración -->
     <div class="row-group">
       <div class="row-header">
-        <span>Duración (minutos)</span>
-        <span id="bellStatus">Cuenco al final</span>
+        <span>Duración</span>
+        <span id="customAudioName">Sin pista MP3 externa</span>
       </div>
       <div class="chip-group" id="durationGroup">
         <button class="chip" data-min="5">5m</button>
@@ -340,10 +372,33 @@
       </div>
     </div>
 
+    <!-- Meditación Guiada (Voz) -->
+    <div class="row-group">
+      <div class="row-header">
+        <span>Guion de Meditación (Voz)</span>
+        <span id="voiceStatus">Guía activa</span>
+      </div>
+      <div class="chip-group" id="scriptGroup">
+        <button class="chip active" data-script="bodyscan">Escaneo</button>
+        <button class="chip" data-script="stress">Soltar</button>
+        <button class="chip" data-script="breath">Solo Ritmo</button>
+        <button class="chip" data-script="none">Sin Voz</button>
+      </div>
+      <div class="voice-bar">
+        <select id="voiceSelect" class="voice-select">
+          <option value="">Cargando voces del dispositivo...</option>
+        </select>
+        <label class="file-label" title="Cargar un MP3 de meditación desde tu móvil">
+          📂 Audio MP3
+          <input type="file" id="audioFileInput" accept="audio/*" style="display: none;" />
+        </label>
+      </div>
+    </div>
+
     <!-- Patrón de respiración -->
     <div class="row-group">
       <div class="row-header">
-        <span>Patrón de Respiración</span>
+        <span>Ritmo de Respiración</span>
         <span id="patternDesc">4-4-4-4</span>
       </div>
       <div class="chip-group" id="patternGroup">
@@ -357,8 +412,8 @@
     <!-- Ambiente sonoro -->
     <div class="row-group">
       <div class="row-header">
-        <span>Sonido Generativo (Offline)</span>
-        <span id="volLabel">Vol: 60%</span>
+        <span>Fondo Ambiental</span>
+        <span id="volLabel">Vol: 55%</span>
       </div>
       <div class="chip-group" id="soundGroup">
         <button class="chip active" data-sound="rain">Lluvia</button>
@@ -367,16 +422,16 @@
         <button class="chip" data-sound="mute">Silencio</button>
       </div>
       <div class="sound-Controls">
-        <span style="font-size: 0.8rem; color: var(--text-muted);">🔈</span>
-        <input type="range" id="volumeSlider" min="0" max="1" step="0.02" value="0.6" />
-        <span style="font-size: 0.8rem; color: var(--text-muted);">🔊</span>
+        <span style="font-size: 0.78rem; color: var(--text-muted);">🔈</span>
+        <input type="range" id="volumeSlider" min="0" max="1" step="0.02" value="0.55" />
+        <span style="font-size: 0.78rem; color: var(--text-muted);">🔊</span>
       </div>
     </div>
 
     <!-- Botones de acción -->
     <div class="action-row">
       <button id="startBtn" class="main-btn">Iniciar sesión</button>
-      <button id="voiceCueBtn" class="icon-btn" title="Pulso sonoro al cambiar de fase">🔔 Guía</button>
+      <button id="bellCueBtn" class="icon-btn" title="Tono suave en cada cambio de respiración">🔔 Tono</button>
       <button id="bowlBtn" class="icon-btn" title="Tocar cuenco tibetano">🥣 Cuenco</button>
     </div>
 
@@ -386,11 +441,36 @@
     </div>
   </section>
 
+  <!-- Reproductor oculto para MP3 personalizados -->
+  <audio id="customAudioPlayer" preload="auto"></audio>
+
   <script>
-    // --- Configuraciones de respiración ---
+    // --- Guiones de Meditación Guiada ---
+    const SCRIPTS = {
+      bodyscan: [
+        { sec: 2, text: "Adopta una postura cómoda y cierra suavemente los ojos." },
+        { sec: 14, text: "Lleva tu atención al ritmo natural de tu respiración, siguiendo la esfera." },
+        { sec: 32, text: "Siente el peso de tu cuerpo sobre el asiento. Permite que los hombros caigan lejos de las orejas." },
+        { sec: 55, text: "Relaja los músculos de la frente, el entrecejo y suelta cualquier tensión en la mandíbula." },
+        { sec: 85, text: "Nota cómo el aire entra fresco al inhalar y cómo tu pecho y abdomen se suavizan al exhalar." },
+        { sec: 120, text: "Recorre mentalmente tu espalda. Con cada exhalación, suelta un poco más la carga acumulada hoy." },
+        { sec: 165, text: "Si aparece algún pensamiento o tarea pendiente, obsérvalo sin juzgarlo y déjalo pasar como una nube." },
+        { sec: 210, text: "Lleva la calma hacia tus brazos, tus manos y tus piernas. Todo tu cuerpo descansa en el presente." },
+        { sec: 260, text: "Permanece en este espacio de quietud, acompañando cada inhalación y cada exhalación." }
+      ],
+      stress: [
+        { sec: 2, text: "Detén por un momento todo lo que estabas haciendo. Este instante es solo para ti." },
+        { sec: 14, text: "Inhala profundamente llenando el abdomen, y al exhalar deja ir la prisa mental." },
+        { sec: 35, text: "No hay nada que resolver ahora mismo. Permítete descansar en la respiración." },
+        { sec: 65, text: "Afloja el cuello, los hombros y las manos. Nota la sensación de seguridad en este momento." },
+        { sec: 105, text: "Cada vez que exhalas, tu sistema nervioso entra en una calma más profunda y estable." },
+        { sec: 150, text: "Observa el silencio que queda debajo del ruido mental. Respira despacio." }
+      ]
+    };
+
     const PATTERNS = {
       box: {
-        desc: "4s Inhala · 4s Retén · 4s Exhala · 4s Retén",
+        desc: "4s Inhala · 4s Retén · 4s Exhala · 4s Calma",
         phases: [
           { name: "Inhala", dur: 4, scale: 1.18, freq: 432 },
           { name: "Retén", dur: 4, scale: 1.18, freq: 528 },
@@ -403,37 +483,96 @@
         phases: [
           { name: "Inhala", dur: 4, scale: 1.2, freq: 432 },
           { name: "Retén", dur: 7, scale: 1.2, freq: 528 },
-          { name: "Exhala lento", dur: 8, scale: 0.7, freq: 396 }
+          { name: "Exhala", dur: 8, scale: 0.7, freq: 396 }
         ]
       },
       coherent: {
-        desc: "5s Inhala · 5s Exhala (Coherencia)",
+        desc: "5s Inhala · 5s Exhala",
         phases: [
           { name: "Inhala", dur: 5, scale: 1.18, freq: 440 },
           { name: "Exhala", dur: 5, scale: 0.72, freq: 396 }
         ]
       },
       free: {
-        desc: "Sin guía de ritmo · Solo temporizador",
+        desc: "Respiración libre",
         phases: [
           { name: "Respira", dur: 8, scale: 1.0, freq: 432 }
         ]
       }
     };
 
-    // --- Estado ---
+    // --- Estado General ---
     let durationMin = 10;
     let remainingSec = 600;
+    let elapsedSec = 0;
     let currentPattern = "box";
     let currentSound = "rain";
+    let currentScript = "bodyscan";
     let isRunning = false;
-    let audioCuesEnabled = false;
+    let bellCuesEnabled = false;
     let timerInterval = null;
     let phaseTimeout = null;
     let phaseIndex = 0;
     let wakeLock = null;
+    let hasCustomAudio = false;
 
-    // --- Web Audio API ---
+    // --- Síntesis de Voz (Web Speech API) ---
+    const synth = window.speechSynthesis;
+    const voiceSelect = document.getElementById("voiceSelect");
+    let availableVoices = [];
+
+    function populateVoices() {
+      if (!synth) return;
+      availableVoices = synth.getVoices().filter(v => v.lang.startsWith("es"));
+      if (availableVoices.length === 0) {
+        availableVoices = synth.getVoices();
+      }
+      voiceSelect.innerHTML = "";
+      availableVoices.forEach((voice, idx) => {
+        const opt = document.createElement("option");
+        opt.value = idx;
+        opt.textContent = `${voice.name.replace(/Microsoft |Google /g, "")} (${voice.lang})`;
+        if (voice.name.includes("Natural") || voice.name.includes("Google") || voice.default) {
+          opt.selected = true;
+        }
+        voiceSelect.appendChild(opt);
+      });
+      if (availableVoices.length === 0) {
+        const opt = document.createElement("option");
+        opt.textContent = "Voz estándar del sistema";
+        voiceSelect.appendChild(opt);
+      }
+    }
+
+    if (synth) {
+      populateVoices();
+      if (speechSynthesis.onvoiceschanged !== undefined) {
+        speechSynthesis.onvoiceschanged = populateVoices;
+      }
+    }
+
+    function speakText(text, isShortCue = false) {
+      document.getElementById("guideSubtitle").textContent = text;
+      if (currentScript === "none" || hasCustomAudio || !synth) return;
+
+      // Si está hablando una frase larga de meditación, no la cortamos con "Inhala/Exhala"
+      if (isShortCue && synth.speaking) return;
+
+      if (!isShortCue) synth.cancel();
+
+      const utter = new SpeechSynthesisUtterance(text);
+      const selectedIdx = parseInt(voiceSelect.value, 10);
+      if (!isNaN(selectedIdx) && availableVoices[selectedIdx]) {
+        utter.voice = availableVoices[selectedIdx];
+      }
+      utter.lang = "es-ES";
+      utter.rate = isShortCue ? 0.85 : 0.80; // Cadencia pausada y calmada
+      utter.pitch = 0.92;                    // Tono ligeramente más cálido/grave
+      utter.volume = 0.95;
+      synth.speak(utter);
+    }
+
+    // --- Web Audio API (Sonidos Generativos) ---
     let audioCtx = null;
     let masterGain = null;
     let activeNodes = [];
@@ -446,9 +585,7 @@
         masterGain.gain.value = parseFloat(document.getElementById("volumeSlider").value);
         masterGain.connect(audioCtx.destination);
       }
-      if (audioCtx.state === "suspended") {
-        audioCtx.resume();
-      }
+      if (audioCtx.state === "suspended") audioCtx.resume();
     }
 
     function stopAmbientSound() {
@@ -475,7 +612,7 @@
           const white = Math.random() * 2 - 1;
           output[i] = (lastOut + (0.02 * white)) / 1.02;
           lastOut = output[i];
-          output[i] *= (currentSound === "rain" ? 2.2 : 3.2);
+          output[i] *= (currentSound === "rain" ? 1.8 : 2.8);
         }
         const whiteNoise = audioCtx.createBufferSource();
         whiteNoise.buffer = noiseBuffer;
@@ -483,21 +620,20 @@
 
         const filter = audioCtx.createBiquadFilter();
         filter.type = currentSound === "rain" ? "bandpass" : "lowpass";
-        filter.frequency.value = currentSound === "rain" ? 950 : 280;
-        filter.Q.value = currentSound === "rain" ? 0.7 : 1.0;
+        filter.frequency.value = currentSound === "rain" ? 900 : 260;
+        filter.Q.value = 0.7;
 
         whiteNoise.connect(filter);
         filter.connect(masterGain);
         whiteNoise.start(0);
         activeNodes.push(whiteNoise, filter);
       } else if (currentSound === "theta") {
-        // Drone armónico Om 136.1 Hz + 204.15 Hz (quinta justa)
         [136.1, 139.1, 204.15].forEach(freq => {
           const osc = audioCtx.createOscillator();
           const gain = audioCtx.createGain();
           osc.type = "sine";
           osc.frequency.value = freq;
-          gain.gain.value = 0.18;
+          gain.gain.value = 0.14;
           osc.connect(gain);
           gain.connect(masterGain);
           osc.start();
@@ -509,25 +645,23 @@
     function playTibetanBowl() {
       initAudio();
       const now = audioCtx.currentTime;
-      const partials = [256, 512, 768, 1024];
-      partials.forEach((freq, idx) => {
+      [256, 512, 768, 1024].forEach((freq, idx) => {
         const osc = audioCtx.createOscillator();
         const gain = audioCtx.createGain();
         osc.type = "sine";
         osc.frequency.value = freq + (idx * 1.5);
-        const startGain = 0.25 / (idx + 1);
         gain.gain.setValueAtTime(0.001, now);
-        gain.gain.linearRampToValueAtTime(startGain, now + 0.08);
-        gain.gain.exponentialRampToValueAtTime(0.0001, now + 5.5 - idx * 0.8);
+        gain.gain.linearRampToValueAtTime(0.22 / (idx + 1), now + 0.08);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + 5.2 - idx * 0.8);
         osc.connect(gain);
         gain.connect(audioCtx.destination);
         osc.start(now);
-        osc.stop(now + 5.6);
+        osc.stop(now + 5.3);
       });
     }
 
-    function playPhaseCue(freq) {
-      if (!audioCuesEnabled || !isRunning) return;
+    function playPhaseTone(freq) {
+      if (!bellCuesEnabled || !isRunning) return;
       initAudio();
       const now = audioCtx.currentTime;
       const osc = audioCtx.createOscillator();
@@ -535,21 +669,21 @@
       osc.type = "sine";
       osc.frequency.value = freq;
       gain.gain.setValueAtTime(0.001, now);
-      gain.gain.linearRampToValueAtTime(0.06, now + 0.05);
-      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.7);
+      gain.gain.linearRampToValueAtTime(0.05, now + 0.05);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.65);
       osc.connect(gain);
       gain.connect(audioCtx.destination);
       osc.start(now);
-      osc.stop(now + 0.75);
+      osc.stop(now + 0.7);
     }
 
-    // --- Temporizador y Fases ---
+    // --- Control de Respiración y Sesión ---
     const orbCore = document.getElementById("orbCore");
     const orbRing = document.getElementById("orbRing");
     const phaseLabel = document.getElementById("phaseLabel");
     const timerDisplay = document.getElementById("timerDisplay");
-    const subStatus = document.getElementById("subStatus");
     const startBtn = document.getElementById("startBtn");
+    const customAudioPlayer = document.getElementById("customAudioPlayer");
 
     function formatTime(sec) {
       const m = Math.floor(sec / 60).toString().padStart(2, "0");
@@ -568,7 +702,11 @@
       orbCore.style.transform = `scale(${phase.scale})`;
       orbRing.style.transform = `scale(${phase.scale * 1.15})`;
 
-      playPhaseCue(phase.freq);
+      playPhaseTone(phase.freq);
+
+      if (currentScript === "breath") {
+        speakText(phase.name, true);
+      }
 
       phaseTimeout = setTimeout(() => {
         phaseIndex++;
@@ -576,45 +714,59 @@
       }, phase.dur * 1000);
     }
 
+    function checkGuidedScript() {
+      if (hasCustomAudio || currentScript === "none" || currentScript === "breath") return;
+      const phrases = SCRIPTS[currentScript];
+      if (!phrases) return;
+      const match = phrases.find(item => item.sec === elapsedSec);
+      if (match) {
+        speakText(match.text, false);
+      } else if (remainingSec === 15) {
+        speakText("Toma una última inhalación profunda. Poco a poco, vuelve a mover los dedos y abre los ojos.", false);
+      }
+    }
+
     async function requestWakeLock() {
       if ("wakeLock" in navigator) {
-        try {
-          wakeLock = await navigator.wakeLock.request("screen");
-        } catch (e) {}
+        try { wakeLock = await navigator.wakeLock.request("screen"); } catch (e) {}
       }
     }
 
     function releaseWakeLock() {
-      if (wakeLock) {
-        wakeLock.release().catch(() => {});
-        wakeLock = null;
-      }
+      if (wakeLock) { wakeLock.release().catch(() => {}); wakeLock = null; }
     }
 
     function toggleSession() {
-      if (isRunning) {
-        stopSession(false);
-      } else {
-        startSession();
-      }
+      isRunning ? stopSession(false) : startSession();
     }
 
     function startSession() {
       initAudio();
       isRunning = true;
       phaseIndex = 0;
+      elapsedSec = 0;
       startBtn.textContent = "Detener sesión";
       startBtn.classList.add("running");
-      subStatus.textContent = PATTERNS[currentPattern].desc;
 
       playTibetanBowl();
       startAmbientSound();
       requestWakeLock();
       runBreathingCycle();
 
+      if (hasCustomAudio) {
+        customAudioPlayer.currentTime = 0;
+        customAudioPlayer.play().catch(() => {});
+        document.getElementById("guideSubtitle").textContent = "Reproduciendo tu meditación guiada...";
+      } else if (currentScript === "none") {
+        document.getElementById("guideSubtitle").textContent = PATTERNS[currentPattern].desc;
+      }
+
       timerInterval = setInterval(() => {
         remainingSec--;
+        elapsedSec++;
         timerDisplay.textContent = formatTime(remainingSec);
+        checkGuidedScript();
+
         if (remainingSec <= 0) {
           stopSession(true);
         }
@@ -627,6 +779,8 @@
       clearTimeout(phaseTimeout);
       stopAmbientSound();
       releaseWakeLock();
+      if (synth) synth.cancel();
+      if (hasCustomAudio) customAudioPlayer.pause();
 
       orbCore.style.transition = "transform 0.6s ease";
       orbRing.style.transition = "transform 0.6s ease";
@@ -639,40 +793,51 @@
       if (completed) {
         playTibetanBowl();
         phaseLabel.textContent = "Namasté";
-        subStatus.textContent = "Sesión completada con éxito";
+        speakText("Sesión completada. Gracias por dedicarte este tiempo.", false);
         saveStats(durationMin);
       } else {
         phaseLabel.textContent = "Pausa";
-        subStatus.textContent = "Toca el círculo para reanudar";
+        document.getElementById("guideSubtitle").textContent = "Toca el círculo cuando quieras reanudar";
       }
       remainingSec = durationMin * 60;
       timerDisplay.textContent = formatTime(remainingSec);
     }
 
-    // --- Almacenamiento de Estadísticas ---
+    // --- Carga de MP3 Personalizado ---
+    document.getElementById("audioFileInput").addEventListener("change", (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const url = URL.createObjectURL(file);
+      customAudioPlayer.src = url;
+      hasCustomAudio = true;
+      document.getElementById("customAudioName").textContent = `🎵 ${file.name.slice(0, 18)}`;
+      document.getElementById("voiceStatus").textContent = "MP3 Personalizado";
+    });
+
+    // --- Estadísticas ---
     function loadStats() {
-      const sessions = parseInt(localStorage.getItem("calma_sessions") || "0", 10);
-      const minutes = parseInt(localStorage.getItem("calma_minutes") || "0", 10);
-      document.getElementById("sessionsStat").textContent = `Sesiones: ${sessions}`;
-      document.getElementById("minutesStat").textContent = `Tiempo total: ${minutes} min`;
+      const s = parseInt(localStorage.getItem("calma_sessions") || "0", 10);
+      const m = parseInt(localStorage.getItem("calma_minutes") || "0", 10);
+      document.getElementById("sessionsStat").textContent = `Sesiones: ${s}`;
+      document.getElementById("minutesStat").textContent = `Tiempo total: ${m} min`;
     }
 
     function saveStats(addedMin) {
-      const sessions = parseInt(localStorage.getItem("calma_sessions") || "0", 10) + 1;
-      const minutes = parseInt(localStorage.getItem("calma_minutes") || "0", 10) + addedMin;
-      localStorage.setItem("calma_sessions", sessions);
-      localStorage.setItem("calma_minutes", minutes);
+      const s = parseInt(localStorage.getItem("calma_sessions") || "0", 10) + 1;
+      const m = parseInt(localStorage.getItem("calma_minutes") || "0", 10) + addedMin;
+      localStorage.setItem("calma_sessions", s);
+      localStorage.setItem("calma_minutes", m);
       loadStats();
     }
 
-    // --- Eventos de Interfaz ---
+    // --- Eventos UI ---
     orbCore.addEventListener("click", toggleSession);
     startBtn.addEventListener("click", toggleSession);
     document.getElementById("bowlBtn").addEventListener("click", playTibetanBowl);
 
-    document.getElementById("voiceCueBtn").addEventListener("click", (e) => {
-      audioCuesEnabled = !audioCuesEnabled;
-      e.currentTarget.classList.toggle("active", audioCuesEnabled);
+    document.getElementById("bellCueBtn").addEventListener("click", (e) => {
+      bellCuesEnabled = !bellCuesEnabled;
+      e.currentTarget.classList.toggle("active", bellCuesEnabled);
     });
 
     document.getElementById("sosBtn").addEventListener("click", () => {
@@ -681,6 +846,7 @@
       remainingSec = 120;
       currentPattern = "box";
       currentSound = "rain";
+      currentScript = "stress";
       timerDisplay.textContent = formatTime(remainingSec);
       startSession();
     });
@@ -697,13 +863,24 @@
       }
     });
 
+    document.getElementById("scriptGroup").addEventListener("click", (e) => {
+      const btn = e.target.closest(".chip");
+      if (!btn) return;
+      document.querySelectorAll("#scriptGroup .chip").forEach(c => c.classList.remove("active"));
+      btn.classList.add("active");
+      currentScript = btn.dataset.script;
+      hasCustomAudio = false;
+      document.getElementById("customAudioName").textContent = "Voz integrada";
+      document.getElementById("voiceStatus").textContent = currentScript === "none" ? "Silenciada" : "Guía activa";
+    });
+
     document.getElementById("patternGroup").addEventListener("click", (e) => {
       const btn = e.target.closest(".chip");
       if (!btn) return;
       document.querySelectorAll("#patternGroup .chip").forEach(c => c.classList.remove("active"));
       btn.classList.add("active");
       currentPattern = btn.dataset.pattern;
-      document.getElementById("patternDesc").textContent = PATTERNS[currentPattern].desc.split("·")[0];
+      document.getElementById("patternDesc").textContent = PATTERNS[currentPattern].desc;
       if (isRunning) {
         clearTimeout(phaseTimeout);
         phaseIndex = 0;
@@ -728,7 +905,7 @@
 
     loadStats();
 
-    // --- Instalación PWA y Service Worker ---
+    // --- Instalación PWA ---
     let deferredPrompt = null;
     const installBtn = document.getElementById("installBtn");
 
