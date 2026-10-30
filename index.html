@@ -7,7 +7,7 @@
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <title>Calma — Meditación & Voz Guiada</title>
+  <title>Calma — Meditación Headspace Personal</title>
   <link rel="manifest" href="manifest.json" />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='120' fill='%23090d16'/%3E%3Ccircle cx='256' cy='256' r='160' fill='%232dd4bf' opacity='0.2'/%3E%3Ccircle cx='256' cy='256' r='105' fill='none' stroke='%232dd4bf' stroke-width='16'/%3E%3Ccircle cx='256' cy='256' r='32' fill='%23f8fafc'/%3E%3C/svg%3E" />
   <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='120' fill='%23090d16'/%3E%3Ccircle cx='256' cy='256' r='160' fill='%232dd4bf' opacity='0.2'/%3E%3Ccircle cx='256' cy='256' r='105' fill='none' stroke='%232dd4bf' stroke-width='16'/%3E%3Ccircle cx='256' cy='256' r='32' fill='%23f8fafc'/%3E%3C/svg%3E" />
@@ -143,8 +143,13 @@
       justify-content: center;
       align-items: center;
       transform: scale(0.8);
-      transition: transform 0.3s ease-out;
+      transition: transform 0.3s ease-out, box-shadow 0.4s ease;
       cursor: pointer;
+    }
+
+    .orb-core.speaking {
+      box-shadow: 0 0 55px rgba(129, 140, 248, 0.45), inset 0 0 30px rgba(45, 212, 191, 0.35);
+      border-color: var(--accent-indigo);
     }
 
     .phase-label {
@@ -165,7 +170,7 @@
 
     .guide-subtitle {
       margin-top: 18px;
-      font-size: 0.88rem;
+      font-size: 0.86rem;
       color: #e2e8f0;
       text-align: center;
       max-width: 360px;
@@ -174,7 +179,6 @@
       padding: 0 10px;
       font-style: italic;
       opacity: 0.9;
-      transition: opacity 0.4s ease;
     }
 
     .controls-card {
@@ -233,35 +237,6 @@
       border-color: var(--accent-teal);
       color: var(--text-main);
       font-weight: 500;
-    }
-
-    .voice-bar {
-      display: flex;
-      gap: 6px;
-      align-items: center;
-      margin-top: 2px;
-    }
-
-    .voice-select {
-      flex: 1;
-      background: rgba(15, 23, 42, 0.8);
-      color: var(--text-main);
-      border: 1px solid var(--border-subtle);
-      border-radius: 9px;
-      padding: 6px 8px;
-      font-size: 0.75rem;
-      outline: none;
-    }
-
-    .file-label {
-      background: rgba(129, 140, 248, 0.15);
-      border: 1px solid rgba(129, 140, 248, 0.4);
-      color: var(--accent-indigo);
-      padding: 6px 10px;
-      border-radius: 9px;
-      font-size: 0.74rem;
-      cursor: pointer;
-      white-space: nowrap;
     }
 
     .sound-Controls {
@@ -354,15 +329,15 @@
         <div id="timerDisplay" class="timer-display">10:00</div>
       </div>
     </div>
-    <div id="guideSubtitle" class="guide-subtitle">Toca el círculo para iniciar tu sesión</div>
+    <div id="guideSubtitle" class="guide-subtitle">Modo Headspace (01-08) listo para empezar</div>
   </main>
 
   <section class="controls-card">
     <!-- Duración -->
     <div class="row-group">
       <div class="row-header">
-        <span>Duración</span>
-        <span id="customAudioName">Sin pista MP3 externa</span>
+        <span>Duración de la sesión</span>
+        <span id="clipStatus">8 bloques sincronizados</span>
       </div>
       <div class="chip-group" id="durationGroup">
         <button class="chip" data-min="5">5m</button>
@@ -372,33 +347,24 @@
       </div>
     </div>
 
-    <!-- Meditación Guiada (Voz) -->
+    <!-- Modo de Voz -->
     <div class="row-group">
       <div class="row-header">
-        <span>Guion de Meditación (Voz)</span>
-        <span id="voiceStatus">Guía activa</span>
+        <span>Voz Guiada</span>
+        <span id="voiceStatus">Magnific IA (01-08)</span>
       </div>
       <div class="chip-group" id="scriptGroup">
-        <button class="chip active" data-script="bodyscan">Escaneo</button>
-        <button class="chip" data-script="stress">Soltar</button>
+        <button class="chip active" data-script="magnific">✨ Mi Voz IA</button>
+        <button class="chip" data-script="tts">Voz Sistema</button>
         <button class="chip" data-script="breath">Solo Ritmo</button>
         <button class="chip" data-script="none">Sin Voz</button>
-      </div>
-      <div class="voice-bar">
-        <select id="voiceSelect" class="voice-select">
-          <option value="">Cargando voces del dispositivo...</option>
-        </select>
-        <label class="file-label" title="Cargar un MP3 de meditación desde tu móvil">
-          📂 Audio MP3
-          <input type="file" id="audioFileInput" accept="audio/*" style="display: none;" />
-        </label>
       </div>
     </div>
 
     <!-- Patrón de respiración -->
     <div class="row-group">
       <div class="row-header">
-        <span>Ritmo de Respiración</span>
+        <span>Ritmo Visual de Esfera</span>
         <span id="patternDesc">4-4-4-4</span>
       </div>
       <div class="chip-group" id="patternGroup">
@@ -413,7 +379,7 @@
     <div class="row-group">
       <div class="row-header">
         <span>Fondo Ambiental</span>
-        <span id="volLabel">Vol: 55%</span>
+        <span id="volLabel">Vol Fondo: 45%</span>
       </div>
       <div class="chip-group" id="soundGroup">
         <button class="chip active" data-sound="rain">Lluvia</button>
@@ -423,7 +389,7 @@
       </div>
       <div class="sound-Controls">
         <span style="font-size: 0.78rem; color: var(--text-muted);">🔈</span>
-        <input type="range" id="volumeSlider" min="0" max="1" step="0.02" value="0.55" />
+        <input type="range" id="volumeSlider" min="0" max="1" step="0.02" value="0.45" />
         <span style="font-size: 0.78rem; color: var(--text-muted);">🔊</span>
       </div>
     </div>
@@ -441,32 +407,23 @@
     </div>
   </section>
 
-  <!-- Reproductor oculto para MP3 personalizados -->
-  <audio id="customAudioPlayer" preload="auto"></audio>
+  <!-- Reproductor para los 8 clips de Magnific -->
+  <audio id="voicePlayer" preload="auto"></audio>
 
   <script>
-    // --- Guiones de Meditación Guiada ---
-    const SCRIPTS = {
-      bodyscan: [
-        { sec: 2, text: "Adopta una postura cómoda y cierra suavemente los ojos." },
-        { sec: 14, text: "Lleva tu atención al ritmo natural de tu respiración, siguiendo la esfera." },
-        { sec: 32, text: "Siente el peso de tu cuerpo sobre el asiento. Permite que los hombros caigan lejos de las orejas." },
-        { sec: 55, text: "Relaja los músculos de la frente, el entrecejo y suelta cualquier tensión en la mandíbula." },
-        { sec: 85, text: "Nota cómo el aire entra fresco al inhalar y cómo tu pecho y abdomen se suavizan al exhalar." },
-        { sec: 120, text: "Recorre mentalmente tu espalda. Con cada exhalación, suelta un poco más la carga acumulada hoy." },
-        { sec: 165, text: "Si aparece algún pensamiento o tarea pendiente, obsérvalo sin juzgarlo y déjalo pasar como una nube." },
-        { sec: 210, text: "Lleva la calma hacia tus brazos, tus manos y tus piernas. Todo tu cuerpo descansa en el presente." },
-        { sec: 260, text: "Permanece en este espacio de quietud, acompañando cada inhalación y cada exhalación." }
-      ],
-      stress: [
-        { sec: 2, text: "Detén por un momento todo lo que estabas haciendo. Este instante es solo para ti." },
-        { sec: 14, text: "Inhala profundamente llenando el abdomen, y al exhalar deja ir la prisa mental." },
-        { sec: 35, text: "No hay nada que resolver ahora mismo. Permítete descansar en la respiración." },
-        { sec: 65, text: "Afloja el cuello, los hombros y las manos. Nota la sensación de seguridad en este momento." },
-        { sec: 105, text: "Cada vez que exhalas, tu sistema nervioso entra en una calma más profunda y estable." },
-        { sec: 150, text: "Observa el silencio que queda debajo del ruido mental. Respira despacio." }
-      ]
-    };
+    // --- Estructura de los 8 Bloques Headspace (Magnific IA) ---
+    // 'ratio' define en qué punto porcentual de la sesión salta cada clip,
+    // excepto el 01 (siempre a los 2 seg) y el 08 (siempre 24 seg antes del final).
+    const HEADSPACE_CLIPS = [
+      { id: "01", title: "1/8 · Aterrizaje y las 3 respiraciones", fixedStart: 2 },
+      { id: "02", title: "2/8 · Peso físico y sonidos", ratio: 0.09 },
+      { id: "03", title: "3/8 · Escaneo corporal de arriba abajo", ratio: 0.19 },
+      { id: "04", title: "4/8 · El ancla de la respiración", ratio: 0.32 },
+      { id: "05", title: "5/8 · Primer rescate de la distracción", ratio: 0.50 },
+      { id: "06", title: "6/8 · Segundo rescate: Nubes y tráfico", ratio: 0.70 },
+      { id: "07", title: "7/8 · Soltar el enfoque / Mente libre", ratio: 0.88 },
+      { id: "08", title: "8/8 · Regreso a la habitación", beforeEnd: 24 }
+    ];
 
     const PATTERNS = {
       box: {
@@ -503,72 +460,84 @@
 
     // --- Estado General ---
     let durationMin = 10;
+    let totalSec = 600;
     let remainingSec = 600;
     let elapsedSec = 0;
     let currentPattern = "box";
     let currentSound = "rain";
-    let currentScript = "bodyscan";
+    let currentScript = "magnific";
     let isRunning = false;
     let bellCuesEnabled = false;
     let timerInterval = null;
     let phaseTimeout = null;
     let phaseIndex = 0;
     let wakeLock = null;
-    let hasCustomAudio = false;
+    let scheduledTimes = {};
 
-    // --- Síntesis de Voz (Web Speech API) ---
+    const voicePlayer = document.getElementById("voicePlayer");
+    const orbCore = document.getElementById("orbCore");
+    const orbRing = document.getElementById("orbRing");
+    const phaseLabel = document.getElementById("phaseLabel");
+    const timerDisplay = document.getElementById("timerDisplay");
+    const startBtn = document.getElementById("startBtn");
+    const guideSubtitle = document.getElementById("guideSubtitle");
     const synth = window.speechSynthesis;
-    const voiceSelect = document.getElementById("voiceSelect");
-    let availableVoices = [];
 
-    function populateVoices() {
-      if (!synth) return;
-      availableVoices = synth.getVoices().filter(v => v.lang.startsWith("es"));
-      if (availableVoices.length === 0) {
-        availableVoices = synth.getVoices();
+    // --- Efecto visual y Ducking (bajar lluvia mientras habla tu voz IA) ---
+    voicePlayer.addEventListener("play", () => {
+      orbCore.classList.add("speaking");
+      if (masterGain && audioCtx) {
+        const baseVol = parseFloat(document.getElementById("volumeSlider").value);
+        masterGain.gain.setTargetAtTime(baseVol * 0.45, audioCtx.currentTime, 0.3);
       }
-      voiceSelect.innerHTML = "";
-      availableVoices.forEach((voice, idx) => {
-        const opt = document.createElement("option");
-        opt.value = idx;
-        opt.textContent = `${voice.name.replace(/Microsoft |Google /g, "")} (${voice.lang})`;
-        if (voice.name.includes("Natural") || voice.name.includes("Google") || voice.default) {
-          opt.selected = true;
-        }
-        voiceSelect.appendChild(opt);
+    });
+
+    voicePlayer.addEventListener("ended", () => {
+      orbCore.classList.remove("speaking");
+      if (masterGain && audioCtx) {
+        const baseVol = parseFloat(document.getElementById("volumeSlider").value);
+        masterGain.gain.setTargetAtTime(baseVol, audioCtx.currentTime, 0.5);
+      }
+      guideSubtitle.textContent = "Silencio consciente... sigue tu respiración";
+    });
+
+    // Soporta tanto .mp3 como .wav automáticamente
+    function playMagnificClip(clipObj) {
+      guideSubtitle.textContent = clipObj.title;
+      voicePlayer.src = `./${clipObj.id}.mp3`;
+      voicePlayer.play().catch(() => {
+        // Si no es .mp3, prueba con .wav
+        voicePlayer.src = `./${clipObj.id}.wav`;
+        voicePlayer.play().catch(() => {
+          guideSubtitle.textContent = `⚠️ No se encontró ${clipObj.id}.mp3 en el repo`;
+        });
       });
-      if (availableVoices.length === 0) {
-        const opt = document.createElement("option");
-        opt.textContent = "Voz estándar del sistema";
-        voiceSelect.appendChild(opt);
-      }
     }
 
-    if (synth) {
-      populateVoices();
-      if (speechSynthesis.onvoiceschanged !== undefined) {
-        speechSynthesis.onvoiceschanged = populateVoices;
-      }
+    function buildSchedule(totalSeconds) {
+      scheduledTimes = {};
+      HEADSPACE_CLIPS.forEach(clip => {
+        let triggerSec;
+        if (clip.fixedStart !== undefined) {
+          triggerSec = clip.fixedStart;
+        } else if (clip.beforeEnd !== undefined) {
+          triggerSec = Math.max(totalSeconds - clip.beforeEnd, 10);
+        } else {
+          triggerSec = Math.round(totalSeconds * clip.ratio);
+        }
+        scheduledTimes[triggerSec] = clip;
+      });
     }
 
-    function speakText(text, isShortCue = false) {
-      document.getElementById("guideSubtitle").textContent = text;
-      if (currentScript === "none" || hasCustomAudio || !synth) return;
-
-      // Si está hablando una frase larga de meditación, no la cortamos con "Inhala/Exhala"
-      if (isShortCue && synth.speaking) return;
-
-      if (!isShortCue) synth.cancel();
-
+    // --- Voz del Sistema (Fallback opcional) ---
+    function speakSystemText(text) {
+      guideSubtitle.textContent = text;
+      if (!synth) return;
+      if (synth.speaking) return;
       const utter = new SpeechSynthesisUtterance(text);
-      const selectedIdx = parseInt(voiceSelect.value, 10);
-      if (!isNaN(selectedIdx) && availableVoices[selectedIdx]) {
-        utter.voice = availableVoices[selectedIdx];
-      }
       utter.lang = "es-ES";
-      utter.rate = isShortCue ? 0.85 : 0.80; // Cadencia pausada y calmada
-      utter.pitch = 0.92;                    // Tono ligeramente más cálido/grave
-      utter.volume = 0.95;
+      utter.rate = 0.82;
+      utter.pitch = 0.92;
       synth.speak(utter);
     }
 
@@ -678,13 +647,6 @@
     }
 
     // --- Control de Respiración y Sesión ---
-    const orbCore = document.getElementById("orbCore");
-    const orbRing = document.getElementById("orbRing");
-    const phaseLabel = document.getElementById("phaseLabel");
-    const timerDisplay = document.getElementById("timerDisplay");
-    const startBtn = document.getElementById("startBtn");
-    const customAudioPlayer = document.getElementById("customAudioPlayer");
-
     function formatTime(sec) {
       const m = Math.floor(sec / 60).toString().padStart(2, "0");
       const s = (sec % 60).toString().padStart(2, "0");
@@ -705,7 +667,7 @@
       playPhaseTone(phase.freq);
 
       if (currentScript === "breath") {
-        speakText(phase.name, true);
+        speakSystemText(phase.name);
       }
 
       phaseTimeout = setTimeout(() => {
@@ -714,15 +676,17 @@
       }, phase.dur * 1000);
     }
 
-    function checkGuidedScript() {
-      if (hasCustomAudio || currentScript === "none" || currentScript === "breath") return;
-      const phrases = SCRIPTS[currentScript];
-      if (!phrases) return;
-      const match = phrases.find(item => item.sec === elapsedSec);
-      if (match) {
-        speakText(match.text, false);
-      } else if (remainingSec === 15) {
-        speakText("Toma una última inhalación profunda. Poco a poco, vuelve a mover los dedos y abre los ojos.", false);
+    function checkSecondEvents() {
+      if (currentScript === "magnific") {
+        const clipToPlay = scheduledTimes[elapsedSec];
+        if (clipToPlay) {
+          playMagnificClip(clipToPlay);
+        }
+      } else if (currentScript === "tts") {
+        const clipToSpeak = scheduledTimes[elapsedSec];
+        if (clipToSpeak) {
+          speakSystemText(clipToSpeak.title.split("· ")[1]);
+        }
       }
     }
 
@@ -745,6 +709,9 @@
       isRunning = true;
       phaseIndex = 0;
       elapsedSec = 0;
+      totalSec = remainingSec;
+      buildSchedule(totalSec);
+
       startBtn.textContent = "Detener sesión";
       startBtn.classList.add("running");
 
@@ -753,19 +720,11 @@
       requestWakeLock();
       runBreathingCycle();
 
-      if (hasCustomAudio) {
-        customAudioPlayer.currentTime = 0;
-        customAudioPlayer.play().catch(() => {});
-        document.getElementById("guideSubtitle").textContent = "Reproduciendo tu meditación guiada...";
-      } else if (currentScript === "none") {
-        document.getElementById("guideSubtitle").textContent = PATTERNS[currentPattern].desc;
-      }
-
       timerInterval = setInterval(() => {
         remainingSec--;
         elapsedSec++;
         timerDisplay.textContent = formatTime(remainingSec);
-        checkGuidedScript();
+        checkSecondEvents();
 
         if (remainingSec <= 0) {
           stopSession(true);
@@ -780,7 +739,8 @@
       stopAmbientSound();
       releaseWakeLock();
       if (synth) synth.cancel();
-      if (hasCustomAudio) customAudioPlayer.pause();
+      voicePlayer.pause();
+      orbCore.classList.remove("speaking");
 
       orbCore.style.transition = "transform 0.6s ease";
       orbRing.style.transition = "transform 0.6s ease";
@@ -793,26 +753,15 @@
       if (completed) {
         playTibetanBowl();
         phaseLabel.textContent = "Namasté";
-        speakText("Sesión completada. Gracias por dedicarte este tiempo.", false);
+        guideSubtitle.textContent = "Sesión completada. Buen trabajo.";
         saveStats(durationMin);
       } else {
         phaseLabel.textContent = "Pausa";
-        document.getElementById("guideSubtitle").textContent = "Toca el círculo cuando quieras reanudar";
+        guideSubtitle.textContent = "Toca el círculo cuando quieras reanudar";
       }
       remainingSec = durationMin * 60;
       timerDisplay.textContent = formatTime(remainingSec);
     }
-
-    // --- Carga de MP3 Personalizado ---
-    document.getElementById("audioFileInput").addEventListener("change", (e) => {
-      const file = e.target.files[0];
-      if (!file) return;
-      const url = URL.createObjectURL(file);
-      customAudioPlayer.src = url;
-      hasCustomAudio = true;
-      document.getElementById("customAudioName").textContent = `🎵 ${file.name.slice(0, 18)}`;
-      document.getElementById("voiceStatus").textContent = "MP3 Personalizado";
-    });
 
     // --- Estadísticas ---
     function loadStats() {
@@ -846,7 +795,7 @@
       remainingSec = 120;
       currentPattern = "box";
       currentSound = "rain";
-      currentScript = "stress";
+      currentScript = "magnific";
       timerDisplay.textContent = formatTime(remainingSec);
       startSession();
     });
@@ -869,9 +818,13 @@
       document.querySelectorAll("#scriptGroup .chip").forEach(c => c.classList.remove("active"));
       btn.classList.add("active");
       currentScript = btn.dataset.script;
-      hasCustomAudio = false;
-      document.getElementById("customAudioName").textContent = "Voz integrada";
-      document.getElementById("voiceStatus").textContent = currentScript === "none" ? "Silenciada" : "Guía activa";
+      const labels = {
+        magnific: "Magnific IA (01-08)",
+        tts: "Voz del teléfono",
+        breath: "Guía de respiración",
+        none: "Silenciada"
+      };
+      document.getElementById("voiceStatus").textContent = labels[currentScript];
     });
 
     document.getElementById("patternGroup").addEventListener("click", (e) => {
@@ -899,7 +852,7 @@
 
     document.getElementById("volumeSlider").addEventListener("input", (e) => {
       const val = parseFloat(e.target.value);
-      document.getElementById("volLabel").textContent = `Vol: ${Math.round(val * 100)}%`;
+      document.getElementById("volLabel").textContent = `Vol Fondo: ${Math.round(val * 100)}%`;
       if (masterGain) masterGain.gain.value = val;
     });
 
